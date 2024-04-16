@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1>Android Demo</h1>
+    <p>{{javaValue.aa}}</p>
+
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/angular.min.js"></script>
+<script>
+    var javaStr = null;
+    if (window.navigator.userAgent.indexOf("Edg") == -1) {
+        javaStr = window.JsInterface.GetString();
+    }
+
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.javaValue = JSON.parse(javaStr);
+    });
+</script>
+</body>
+</html>
