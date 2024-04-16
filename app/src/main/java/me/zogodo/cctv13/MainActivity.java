@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity
 {
     public static MainActivity me;
-    public static String indexUrl = "file:///android_asset/web/index.html";
+    public static String indexUrl = "https://tv.cctv.com/live/cctv13/m/";
     public static WebView webView = null;
     long exitTime = 0;
 

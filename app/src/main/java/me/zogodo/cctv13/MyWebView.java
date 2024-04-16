@@ -20,6 +20,7 @@ public class MyWebView extends WebView
     //region 构造器
     public MyWebView(final Context context) {
         super(context);
+        MyWebView.myJs = CookieTool.RawFileToString(MainActivity.me, R.raw.myjs);
         this.WebViewInit();
     }
     public MyWebView(Context context, AttributeSet attrs) {
