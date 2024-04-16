@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "me.zogodo.cctv13"
-        minSdkVersion 24
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.2"
