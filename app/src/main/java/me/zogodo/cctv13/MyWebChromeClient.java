@@ -19,18 +19,18 @@ public class MyWebChromeClient extends WebChromeClient
     }
 
     private View fullScreenView = null;
-    //FrameLayout frame = (FrameLayout)MainActivity.me.getWindow().getDecorView();
+    FrameLayout frame = (FrameLayout)MainActivity.me.getWindow().getDecorView();
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public void onShowCustomView(View view, CustomViewCallback callback) {
-        ((FrameLayout)MainActivity.me.getWindow().getDecorView()).addView(view);
+        frame.addView(view);
         MainActivity.me.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         fullScreenView = view;
     }
 
     @Override
     public void onHideCustomView() {
-        ((FrameLayout)MainActivity.me.getWindow().getDecorView()).removeView(fullScreenView);
+        frame.removeView(fullScreenView);
         MainActivity.me.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 }
