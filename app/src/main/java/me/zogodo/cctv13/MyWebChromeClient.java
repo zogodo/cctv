@@ -4,10 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
+import android.widget.FrameLayout;
 
 public class MyWebChromeClient extends WebChromeClient
 {
@@ -19,27 +18,19 @@ public class MyWebChromeClient extends WebChromeClient
         return true;
     }
 
+    private View fullScreenView = null;
+    //FrameLayout frame = (FrameLayout)MainActivity.me.getWindow().getDecorView();
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public void onShowCustomView(View view, CustomViewCallback callback) {
-        MainActivity.me.setContentView(view);
+        ((FrameLayout)MainActivity.me.getWindow().getDecorView()).addView(view);
         MainActivity.me.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        Window win = MainActivity.me.getWindow();
-        win.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        win.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        super.onShowCustomView(view, callback);
+        fullScreenView = view;
     }
 
     @Override
     public void onHideCustomView() {
+        ((FrameLayout)MainActivity.me.getWindow().getDecorView()).removeView(fullScreenView);
         MainActivity.me.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-
-        Window win = MainActivity.me.getWindow();
-        win.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        win.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        super.onHideCustomView();
     }
 }
