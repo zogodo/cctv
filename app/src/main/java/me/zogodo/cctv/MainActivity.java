@@ -1,4 +1,4 @@
-package me.zogodo.cctv13;
+package me.zogodo.cctv;
 
 import android.os.Bundle;
 import android.webkit.WebView;
