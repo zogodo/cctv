@@ -8,8 +8,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity
 {
+    public static String[] cctv_urls = {
+        "https://tv.cctv.com/live/cctv1/m/",
+        "https://tv.cctv.com/live/cctv2/m/",
+        "https://tv.cctv.com/live/cctv4/m/",
+        "https://tv.cctv.com/live/cctv5/m/",
+        "https://tv.cctv.com/live/cctv5plus/m/",
+        "https://tv.cctv.com/live/cctv7/m/",
+        "https://tv.cctv.com/live/cctvjilu/m/",
+        "https://tv.cctv.com/live/cctv10/m/",
+        "https://tv.cctv.com/live/cctv11/m/",
+        "https://tv.cctv.com/live/cctv12/m/",
+        "https://tv.cctv.com/live/cctv13/m/",
+        "https://tv.cctv.com/live/cctvchild/m/",
+        "https://tv.cctv.com/live/cctv15/m/",
+        "https://tv.cctv.com/live/cctv16/m/",
+        "https://tv.cctv.com/live/cctv17/m/",
+    };
     public static MainActivity me;
-    public static String indexUrl = "https://tv.cctv.com/live/cctv13/m/";
+    public static int channel = 10; //cctv13
+    public static String indexUrl = cctv_urls[channel];
     public static WebView webView = null;
     long exitTime = 0;
 
