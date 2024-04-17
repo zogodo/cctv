@@ -44,13 +44,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_DPAD_UP)
-            channel = (channel+1) % cctv_urls.length;
-        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
-            channel = (channel-1) % cctv_urls.length;
-        if (keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
-            webView.loadUrl(cctv_urls[channel]); //换台
-        return super.onKeyDown(keyCode, event);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_UP:
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                channel = (channel+1) % cctv_urls.length;
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                channel = (channel-1) % cctv_urls.length;
+                break;
+            default:
+                return super.onKeyDown(keyCode, event);
+        }
+        webView.loadUrl(cctv_urls[channel]); //换台
+        return true;
     }
 
     @Override
