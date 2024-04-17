@@ -12,10 +12,12 @@ public class MainActivity extends AppCompatActivity
     public static String[] cctv_urls = {
         "https://tv.cctv.com/live/cctv1/m/",
         "https://tv.cctv.com/live/cctv2/m/",
+        "https://tv.cctv.com/live/cctv13/m/", //没有cctv3
         "https://tv.cctv.com/live/cctv4/m/",
         "https://tv.cctv.com/live/cctv5/m/",
         "https://tv.cctv.com/live/cctv5plus/m/",
         "https://tv.cctv.com/live/cctv7/m/",
+        "https://tv.cctv.com/live/cctv13/m/", //没有cctv8
         "https://tv.cctv.com/live/cctvjilu/m/",
         "https://tv.cctv.com/live/cctv10/m/",
         "https://tv.cctv.com/live/cctv11/m/",
@@ -26,8 +28,9 @@ public class MainActivity extends AppCompatActivity
         "https://tv.cctv.com/live/cctv16/m/",
         "https://tv.cctv.com/live/cctv17/m/",
     };
+    public static int c_cctv13 = 10;
     public static MainActivity me;
-    public static int channel = 10; //cctv13
+    public static int channel = c_cctv13;
     public static WebView webView = null;
     long exitTime = 0;
 
@@ -45,6 +48,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_0:
+                channel = c_cctv13;
+                break;
+            case KeyEvent.KEYCODE_1:
+            case KeyEvent.KEYCODE_2:
+            case KeyEvent.KEYCODE_3:
+            case KeyEvent.KEYCODE_4:
+            case KeyEvent.KEYCODE_5:
+            case KeyEvent.KEYCODE_6:
+            case KeyEvent.KEYCODE_7:
+            case KeyEvent.KEYCODE_8:
+            case KeyEvent.KEYCODE_9:
+                channel = keyCode - KeyEvent.KEYCODE_1;
+                break;
             case KeyEvent.KEYCODE_DPAD_UP:
             case KeyEvent.KEYCODE_VOLUME_UP:
                 channel = (channel+1) % cctv_urls.length;
