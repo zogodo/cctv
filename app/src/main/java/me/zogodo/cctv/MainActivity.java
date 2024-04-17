@@ -1,6 +1,7 @@
 package me.zogodo.cctv;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity
     };
     public static MainActivity me;
     public static int channel = 10; //cctv13
-    public static String indexUrl = cctv_urls[channel];
     public static WebView webView = null;
     long exitTime = 0;
 
@@ -38,13 +38,19 @@ public class MainActivity extends AppCompatActivity
         MainActivity.me = this;
 
         webView = new MyWebView(this);
-        webView.loadUrl(indexUrl);
+        webView.loadUrl(cctv_urls[channel]);
         this.setContentView(webView);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP)
+            channel = (channel+1) % cctv_urls.length;
+        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
+            channel = (channel-1) % cctv_urls.length;
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
+            webView.loadUrl(cctv_urls[channel]); //换台
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
