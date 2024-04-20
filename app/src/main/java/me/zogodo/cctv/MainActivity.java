@@ -2,7 +2,7 @@ package me.zogodo.cctv;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.WebView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;

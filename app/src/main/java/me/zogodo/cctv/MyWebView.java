@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.WebView;
 
 /**
  * Created by zogod on 17/2/19.

@@ -3,7 +3,9 @@ package me.zogodo.cctv;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.util.Log;
-import android.webkit.*;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * Created by zogod on 17/2/19.
