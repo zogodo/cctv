@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         "https://tv.cctv.com/live/cctv16/m/",
         "https://tv.cctv.com/live/cctv17/m/",
     };
-    public static int c_cctv13 = 10;
+    public static int c_cctv13 = 12;
     public static MainActivity me;
     public static int channel = c_cctv13;
     public static WebView webView = null;
@@ -42,11 +42,14 @@ public class MainActivity extends AppCompatActivity
 
         webView = new MyWebView(this);
         webView.loadUrl(cctv_urls[channel]);
+        //webView.loadUrl("https://cn.bing.com/?ensearch=1&FORM=BEHPTB");
         this.setContentView(webView);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Toast.makeText(getApplicationContext(), "keyCode:" + keyCode, Toast.LENGTH_SHORT).show();
+
         switch (keyCode) {
             case KeyEvent.KEYCODE_0:
                 channel = c_cctv13;
