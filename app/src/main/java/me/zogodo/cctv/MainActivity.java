@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
             case KeyEvent.KEYCODE_VOLUME_UP:
+            case KeyEvent.KEYCODE_MENU:
                 channel = (channel+1) % cctv_urls.length;
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
