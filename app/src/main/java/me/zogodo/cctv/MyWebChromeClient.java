@@ -4,11 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.View;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
-
-import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
-import com.tencent.smtt.sdk.WebChromeClient;
 
 public class MyWebChromeClient extends WebChromeClient
 {
@@ -24,7 +22,7 @@ public class MyWebChromeClient extends WebChromeClient
     FrameLayout frame = (FrameLayout)MainActivity.me.getWindow().getDecorView();
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-    public void onShowCustomView(View view, IX5WebChromeClient.CustomViewCallback callback) {
+    public void onShowCustomView(View view, CustomViewCallback callback) {
         frame.addView(view);
         MainActivity.me.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         fullScreenView = view;
