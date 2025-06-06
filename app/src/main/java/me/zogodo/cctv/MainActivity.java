@@ -1,19 +1,12 @@
 package me.zogodo.cctv;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.webkit.WebView;
 import android.widget.Toast;
 
-import org.mozilla.geckoview.GeckoRuntime;
-import org.mozilla.geckoview.GeckoRuntimeSettings;
-import org.mozilla.geckoview.GeckoSession;
-import org.mozilla.geckoview.GeckoView;
-import org.mozilla.geckoview.WebExtension;
-
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
 {
     public static String[] cctv_urls = {
         "https://tv.cctv.com/live/cctv1/m/",
@@ -37,35 +30,18 @@ public class MainActivity extends AppCompatActivity
     public static int c_cctv13 = 12;
     public static MainActivity me;
     public static int channel = c_cctv13;
+    public static WebView webView = null;
     long exitTime = 0;
 
-    GeckoView view_gecko = null;
-    static GeckoRuntime runtime = null;
-    GeckoSession session = null;
-    private static WebExtension.Port mPort;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        MainActivity.me = this;
 
-        view_gecko = new GeckoView(this);
-
-        GeckoRuntimeSettings.Builder builder = new GeckoRuntimeSettings.Builder()
-                .javaScriptEnabled(true)
-                .doubleTapZoomingEnabled(false)
-                .inputAutoZoomEnabled(false)
-                .consoleOutput(true);
-        session = new GeckoSession();
-        runtime = GeckoRuntime.create(this,builder.build());
-        session.open(runtime);
-        view_gecko.setSession(session);
-        session.getSettings().setAllowJavascript(true);
-        session.getPanZoomController().setIsLongpressEnabled(false);
-        session.loadUri(cctv_urls[channel]);
-
-        setContentView(view_gecko);
+        webView = new MyWebView(this);
+        webView.loadUrl(cctv_urls[channel]);
+        //webView.loadUrl("https://cn.bing.com/?ensearch=1&FORM=BEHPTB");
+        this.setContentView(webView);
     }
 
     @Override
@@ -89,7 +65,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
             case KeyEvent.KEYCODE_VOLUME_UP:
-            case KeyEvent.KEYCODE_MENU:
                 channel = (channel+1) % cctv_urls.length;
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
@@ -99,7 +74,7 @@ public class MainActivity extends AppCompatActivity
             default:
                 return super.onKeyDown(keyCode, event);
         }
-        session.loadUri(cctv_urls[channel]); //换台
+        webView.loadUrl(cctv_urls[channel]); //换台
         return true;
     }
 
